@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Cart from './Cart';
+import ActionBar from './ActionBar';
+import Product from './Product';
 import './App.css';
 
-function App() {
+
+
+const App = () => {
+  const [item, setItem] = useState(0)
+  const incrementItem = () => {
+    setItem(item + 1)
+  }
+  const decrementItem = () => {
+    item !== 0 && setItem(item - 1)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Cart item={item}/>
+      <div>
+        <Product />
+        <ActionBar incrementItem={incrementItem} decrementItem={decrementItem}/>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
